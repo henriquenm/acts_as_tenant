@@ -82,7 +82,7 @@ module ActsAsTenant
           unless a == reflect_on_association(tenant) || polymorphic_foreign_keys.include?(a.foreign_key)
 
             association_class =  if a.options[:class_name].nil? 
-              a.name.to_s.classify.constantize rescue false || "Spree::#{a.name.to_s.classify}".constantize
+              a.name.to_s.classify.constantize rescue false || "Spree::#{a.name.to_s.classify}".constantize rescue binding.pry
             else
               a.options[:class_name].constantize
             end
