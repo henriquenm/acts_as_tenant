@@ -89,7 +89,12 @@ module ActsAsTenant
               end
               
             else
-              a.options[:class_name].constantize
+              begin
+                a.options[:class_name].constantize  
+              rescue Exception => e
+                binding.pry
+              end
+              
             end
 
             validates_each a.foreign_key.to_sym do |record, attr, value|
